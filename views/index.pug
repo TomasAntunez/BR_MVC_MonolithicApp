@@ -1,0 +1,45 @@
+extends ./layout/app
+
+block styles
+    link(rel="stylesheet" href="https://unpkg.com/leaflet@1.8.0/dist/leaflet.css")
+
+block content
+    div(class="py-5")
+        h1(class="text-center text-4xl font-extrabold") Location on the Map
+
+        div(class="flex flex-col md:flex-row items-center py-10 gap-4")
+            h2(class="text-sm uppercase text-gray-800 font-bold") Filter properties
+
+            div(class="w-full md:w-auto flex items-center gap-2")
+                label(for="categories" class="text-sm w-24 uppercase text-gray-500 font-bold") Categories
+                select(id="categories" class="flex-1 bg-white w-full px-3 py-2 border border-gray-300 rounded-md shadow")
+                    option(value="") - Select -
+                    each category in categories
+                        option(value=category.id)= category.name
+
+            div(class="w-full md:w-auto flex items-center gap-2")
+                label(for="prices" class="text-sm w-24 uppercase text-gray-500 font-bold") Prices
+                select(id="prices" class="flex-1 bg-white w-full px-3 py-2 border border-gray-300 rounded-md shadow")
+                    option(value="") - Select -
+                    each price in prices
+                        option(value=price.id)= price.name
+
+        div(id="init-map" class="h-[600px] mt-5")
+
+        section(class="py-5")
+            h2(class="text-center text-4xl font-extrabold pt-10") Houses for Sale
+
+            div(class="grid grid-cols-1 md:grid-cols-3 gap-5 mt-14")
+                each property in homes
+                    include ./templates/card
+
+        section(class="py-5")
+            h2(class="text-center text-4xl font-extrabold pt-10") Apartments for Sale
+
+            div(class="grid grid-cols-1 md:grid-cols-3 gap-5 mt-14")
+                each property in apartments
+                    include ./templates/card
+
+block scripts
+    script(src="https://unpkg.com/leaflet@1.8.0/dist/leaflet.js")
+    script(src="/js/initMap.js")

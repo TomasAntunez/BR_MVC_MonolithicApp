@@ -1,0 +1,24 @@
+extends ../layout/admin
+
+block content
+    h2(class="text-2xl font-extrabold text-center my-10")= page
+
+    a(href="/my-properties" class="hover:bg-indigo-700 sm:w-auto").rounded.py-2.bg-indigo-600.text-sm.px-10.font-bold.text-center.text-white.uppercase.my-5.inline-block.w-full Return
+
+    div(class="mx-auto max-w-6xl bg-white shadow rounded")
+
+        if messages.length
+            ul
+                each message in messages
+                    li(class="border-gray-200 border-b p-5 space-y-1")
+                        p(class="font-bold text-gray-800") Name: 
+                            span(class="font-normal")= message.user.name
+                        p(class="font-bold text-gray-800") Email: 
+                            span(class="font-normal")= message.user.email
+                        p(class="font-bold text-gray-800") Message: 
+                            span(class="font-normal")= message.message
+                        p(class="font-bold text-gray-800") Sent: 
+                            span(class="font-normal")= formatDate(message.createdAt)
+
+        else
+            p(class="text-center text-gray-600 p-5 font-medium") There are not messages

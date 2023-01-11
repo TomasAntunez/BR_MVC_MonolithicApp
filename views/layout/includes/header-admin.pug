@@ -1,0 +1,13 @@
+header.bg-indigo-600.p-4
+    .container.mx-auto.flex.justify-between.items-center
+        a(href="/") 
+            h1.text-2xl.text-white.font-extrabold.text-center Real
+                span.font-normal Estate
+
+        nav(class="md:flex md:items-center md:gap-3").my-5.text-sm.font-bold.text-white.hidden
+            a(href="/my-properties") My Properties
+            a(href="") My Profile
+
+            form(action="/auth/signoff" method="POST")
+                input(type="hidden" name="_csrf" value=csrfToken)
+                input(type="submit" value="Sign Off").bg-indigo-800.py-2.px-10.rounded-lg.cursor-pointer
